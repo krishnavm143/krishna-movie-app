@@ -18,6 +18,17 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavBar);
+    return () => {
+      window.removeEventListener("scroll", controlNavBar);
+    };
+  }, [lastScrollY]);
+
+  const controlNavBar = () => {
+    console.log(window.scrollY);
+  };
+
   const searchQueryHandler = (e: KeyboardEvent) => {
     if (e.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
